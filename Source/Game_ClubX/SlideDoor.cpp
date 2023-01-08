@@ -58,7 +58,8 @@ void ASlideDoor::Tick(float DeltaTime)
 
 void ASlideDoor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Overlap Begin"));
+	FString OtherName = OtherActor->GetActorNameOrLabel();
+	UE_LOG(LogTemp, Warning, TEXT("%s In the trigger area"), *OtherName);
 
 	if (!bCharNearDoor) bCharNearDoor = true;
 
@@ -74,7 +75,8 @@ void ASlideDoor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 
 void ASlideDoor::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Overlap End"));
+	FString OtherName = OtherActor->GetActorNameOrLabel();
+	UE_LOG(LogTemp, Warning, TEXT("%s Out of the trigger box"), *OtherName);
 
 	if (bCharNearDoor) bCharNearDoor = false;
 

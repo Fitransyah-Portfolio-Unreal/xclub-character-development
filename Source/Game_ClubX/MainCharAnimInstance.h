@@ -21,6 +21,12 @@ class GAME_CLUBX_API UMainCharAnimInstance : public UAnimInstance
 	void UpdateAnimationProperties();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+	FRotator ControlRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
+	FRotator ActorRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 	float MovementSpeed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
@@ -31,6 +37,4 @@ class GAME_CLUBX_API UMainCharAnimInstance : public UAnimInstance
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Movement")
 	class AMainCharacter* MainCharacter;
-
-	
 };

@@ -33,6 +33,9 @@ void UMainCharAnimInstance::UpdateAnimationProperties()
 
 		bIsInAir = Pawn->GetMovementComponent()->IsFalling();
 
+		ControlRotation = Pawn->GetControlRotation();
+		ActorRotation = Pawn->GetActorRotation();
+
 		if (MainCharacter != nullptr)
 		{
 			MainCharacter = Cast<AMainCharacter>(Pawn);

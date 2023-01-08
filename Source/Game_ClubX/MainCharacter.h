@@ -6,6 +6,18 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+
+UENUM(BlueprintType)
+enum class EDrunknessLevel : uint8
+{
+	EDL_Normal UMETA(DisplayName = "Normal"),
+	EDL_Typsy UMETA(DisplayName = "Typsy"),
+	EDL_Drunk UMETA(DisplayName = "Drunk"),
+	EDL_Wasted UMETA(DisplayName = "Wasted"),
+
+	EDL_MAX UMETA(DisplayName = "DefaultMAX")
+};
+
 UCLASS()
 class GAME_CLUBX_API AMainCharacter : public ACharacter
 {
@@ -59,6 +71,10 @@ public:
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 	//------------------ WALK MODE
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "WalkMode")
+	float NormalWalkSpeed;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "WalkMode")
+	float EmoteWalkSpeed;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WalkMode")
 	bool bIsHappy;
@@ -90,15 +106,68 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "DanceMode")
 	void StopDancing();
 
-	//------------------ DANCE MODE
+	//------------------ DRINK MECHANIC
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "HoldingGlass")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drinking")
 	bool bIsHoldingGlass;
 
-	UFUNCTION(BlueprintCallable, Category = "HoldingGlass")
-	void HoldingGlassActive();
+	
+	
+	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, Category = "Drinking")
+	class ADrinks* HoldedDrink;
 
-	UFUNCTION(BlueprintCallable, Category = "HoldingGlass")
-	void HoldingGlassInactive();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drinking")
+	class AItem* ActiveOverlappingItem;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Drinking")
+	class UAnimMontage* DrinkingMontage;
+
+	UPROPERTY(VisibleAnywhere, Category = "Drinking")
+	bool bIsDrinking;
+
+	bool bLMBDown;
+
+	void SetHoldedDrink(ADrinks* DrinkToHold);
+	void LMBDown();
+	void LMBUp();
+	void Drinking();
+
+	UFUNCTION(BlueprintCallable)
+	void DrinkingEnd();
+
+	// Setter for overlapping item
+	FORCEINLINE void SetActiveOverlappingItem(AItem* ItemToSet) { ActiveOverlappingItem = ItemToSet; }
+
+	// Getter to weapon
+	FORCEINLINE ADrinks* GetEquippedWeapon() { return HoldedDrink; }
+
+	// Getter for overlapping item
+	FORCEINLINE AItem* GetActiveOverlappingItem() { return ActiveOverlappingItem; }
+
+	//------------------ DRUNK MECHANIC
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float MaxDrunkness;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float TypsyLimit;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float DrunkLimit;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float WastedLimit;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float AlcoholDrainRate;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float IntoxicationRate;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float TypsyWalkSpeed;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")
+	float DrunkWalkSpeed;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Drunk")
+	float Drunkness;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Drunk")
+	EDrunknessLevel DrunkState;
+
+	void SetDrunkState(EDrunknessLevel NewState);
+	
+	
 };
