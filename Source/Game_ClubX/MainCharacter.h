@@ -168,6 +168,10 @@ public:
 	EDrunknessLevel DrunkState;
 
 	void SetDrunkState(EDrunknessLevel NewState);
-	
+
+	//--------------------------
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Face Live Link")
+	bool bFaceLiveLinkEnabled;
 	
 };

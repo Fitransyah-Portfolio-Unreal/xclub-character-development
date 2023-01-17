@@ -30,8 +30,9 @@ ASlideDoor::ASlideDoor()
 	RightDoor->SetupAttachment(GetRootComponent());
 	LeftDoor->SetupAttachment(GetRootComponent());
 
-	CloseTime = 1.5f;
+	CloseTime = 4.f;
 	bCharNearDoor = false;
+	bDoorIsOpen = false;
 
 	DoorOpeningSound = nullptr;
 }
@@ -62,14 +63,17 @@ void ASlideDoor::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor
 	UE_LOG(LogTemp, Warning, TEXT("%s In the trigger area"), *OtherName);
 
 	if (!bCharNearDoor) bCharNearDoor = true;
+	
 
 	SlideOpenRightDoor();
 	SlideOpenLeftDoor();
 
-	if (DoorOpeningSound)
+	if (DoorOpeningSound && !bDoorIsOpen)
 	{
 		UGameplayStatics::PlaySound2D(this, DoorOpeningSound);
+		bDoorIsOpen = true;
 	}
+
 }
 
 
@@ -105,10 +109,13 @@ void ASlideDoor::CloseDoor()
 		SlideCloseRightDoor();
 		SlideCloseLeftDoor();
 
-		if (DoorClosingSound)
+		if (DoorClosingSound && bDoorIsOpen)
 		{
 			UGameplayStatics::PlaySound2D(this, DoorClosingSound);
+			bDoorIsOpen = false;
 		}
+
+		
 	}
 }
 

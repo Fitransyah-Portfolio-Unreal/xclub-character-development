@@ -39,6 +39,7 @@ void UMainCharAnimInstance::UpdateAnimationProperties()
 		if (MainCharacter != nullptr)
 		{
 			MainCharacter = Cast<AMainCharacter>(Pawn);
+			
 		}
 	}
 }

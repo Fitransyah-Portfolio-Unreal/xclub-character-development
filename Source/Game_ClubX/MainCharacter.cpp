@@ -52,9 +52,11 @@ AMainCharacter::AMainCharacter()
 	DrunkLimit = 100.f;
 	AlcoholDrainRate = 0.075f;
 	IntoxicationRate = 12.5f;
-	WastedLimit = 125.f;
+	WastedLimit = 145.f;
 	TypsyWalkSpeed = 100.f;
-	DrunkWalkSpeed = 40.f;
+	DrunkWalkSpeed = 65.f;
+
+	bFaceLiveLinkEnabled = false;
 }
 
 // Called when the game starts or when spawned
@@ -284,6 +286,7 @@ void AMainCharacter::Drinking()
 		if (AnimInstance && DrinkingMontage)
 		{
 			AnimInstance->Montage_Play(DrinkingMontage, 1.5f);
+			Drunkness += IntoxicationRate;
 		}
 	}
 }
@@ -316,5 +319,4 @@ void AMainCharacter::SetDrunkState(EDrunknessLevel NewState)
 		GetCharacterMovement()->MaxWalkSpeed = 0.001f;
 		break;
 	}
-
 }

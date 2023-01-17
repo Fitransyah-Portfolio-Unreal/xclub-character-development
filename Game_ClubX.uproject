@@ -70,6 +70,10 @@
 		{
 			"Name": "RemoteControlProtocolDMX",
 			"Enabled": true
+		},
+		{
+			"Name": "Metasound",
+			"Enabled": true
 		}
 	]
 }
