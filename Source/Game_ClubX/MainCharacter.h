@@ -52,9 +52,11 @@ public:
 	float BaseLookupRate;
 
 	// Called for forward/backwards input
+	UFUNCTION(BlueprintCallable)
 	void MoveForward(float Value);
 
 	// Called for side to side input
+	UFUNCTION(BlueprintCallable)
 	void MoveRight(float Value);
 
 	/** Called via input to turn at a given rate

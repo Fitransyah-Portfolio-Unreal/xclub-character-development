@@ -12,7 +12,9 @@ void AMainCharPlayerController::BeginPlay()
 	{
 		HUDOverlay = CreateWidget<UUserWidget>(this, HUDOverlayAsset);
 	}
-	HUDOverlay->AddToViewport();
+	HUDOverlay->AddToViewport(-20);
 
 	HUDOverlay->SetVisibility(ESlateVisibility::Visible);
+	HUDOverlay->bIsEnabled = true;
+	HUDOverlay->bIsFocusable = true;
 }
