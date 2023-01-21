@@ -16,5 +16,6 @@ void AMainCharPlayerController::BeginPlay()
 
 	HUDOverlay->SetVisibility(ESlateVisibility::Visible);
 	HUDOverlay->bIsEnabled = true;
-	HUDOverlay->bIsFocusable = true;
+	
+
 }
