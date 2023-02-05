@@ -171,6 +171,15 @@ public:
 
 	void SetDrunkState(EDrunknessLevel NewState);
 
+	//------------------ FIRST  PERSON
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* HeadCamera;
+
+	void ToggleCamera();
+
+	void SetCameraPitchLimits(float Min, float Max);
+
 	//--------------------------
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Face Live Link")

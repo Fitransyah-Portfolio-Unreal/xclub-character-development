@@ -14,6 +14,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
+#include "Camera/PlayerCameraManager.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -57,6 +58,15 @@ AMainCharacter::AMainCharacter()
 	DrunkWalkSpeed = 65.f;
 
 	bFaceLiveLinkEnabled = false;
+
+	// First Person Mode
+	HeadCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("HeadCamera"));
+	HeadCamera->SetupAttachment(GetMesh(), FName("HeadSocket"));
+	HeadCamera->bAutoActivate = false;
+	HeadCamera->bUsePawnControlRotation = true;
+	HeadCamera->SetWorldLocation(FVector(0.f, 0.f, 25.f));
+	HeadCamera->SetWorldRotation(FRotator(0.f, 90.f, 90.f));
+	SetCameraPitchLimits(-89.f, 89.f);
 }
 
 // Called when the game starts or when spawned
@@ -177,6 +187,7 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("LMB", IE_Pressed, this, &AMainCharacter::LMBDown);
 	PlayerInputComponent->BindAction("LMB", IE_Released, this, &AMainCharacter::LMBUp);
 
+	PlayerInputComponent->BindAction("ToggleCamera", IE_Pressed, this, &AMainCharacter::ToggleCamera);
 }
 
 void AMainCharacter::MoveForward(float Value)
@@ -319,4 +330,29 @@ void AMainCharacter::SetDrunkState(EDrunknessLevel NewState)
 		GetCharacterMovement()->MaxWalkSpeed = 0.001f;
 		break;
 	}
+}
+
+void AMainCharacter::ToggleCamera()
+{
+	if (FollowCamera->IsActive())
+	{
+		FollowCamera->SetActive(false);
+		HeadCamera->SetActive(true);
+		bUseControllerRotationYaw = true;
+		SetCameraPitchLimits(-60.f, 90.f);
+	}
+	else
+	{
+		FollowCamera->SetActive(true);
+		HeadCamera->SetActive(false);
+		bUseControllerRotationYaw = false;
+		SetCameraPitchLimits(-89.f, 89.f);
+	}
+}
+
+void AMainCharacter::SetCameraPitchLimits(float Min, float Max)
+{
+	APlayerController* PlayerController = Cast<APlayerController>(GetController());
+	PlayerController->PlayerCameraManager->ViewPitchMin = Min;
+	PlayerController->PlayerCameraManager->ViewPitchMax = Max;
 }
