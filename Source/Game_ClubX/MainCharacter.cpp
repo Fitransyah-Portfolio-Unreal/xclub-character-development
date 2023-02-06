@@ -58,7 +58,7 @@ AMainCharacter::AMainCharacter()
 	DrunkWalkSpeed = 65.f;
 
 	bFaceLiveLinkEnabled = false;
-
+	
 	// First Person Mode
 	HeadCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("HeadCamera"));
 	HeadCamera->SetupAttachment(GetMesh(), FName("HeadSocket"));
@@ -66,7 +66,6 @@ AMainCharacter::AMainCharacter()
 	HeadCamera->bUsePawnControlRotation = true;
 	HeadCamera->SetWorldLocation(FVector(0.f, 0.f, 25.f));
 	HeadCamera->SetWorldRotation(FRotator(0.f, 90.f, 90.f));
-	SetCameraPitchLimits(-89.f, 89.f);
 }
 
 // Called when the game starts or when spawned
@@ -78,6 +77,9 @@ void AMainCharacter::BeginPlay()
 	bIsSad = false;
 	bIsDancing = false;
 	bIsHoldingGlass = false;
+
+	SetCameraPitchLimits(-89.f, 89.f);
+
 }
 
 // Called every frame
@@ -339,7 +341,7 @@ void AMainCharacter::ToggleCamera()
 		FollowCamera->SetActive(false);
 		HeadCamera->SetActive(true);
 		bUseControllerRotationYaw = true;
-		SetCameraPitchLimits(-60.f, 90.f);
+		SetCameraPitchLimits(-70.f, 90.f);
 	}
 	else
 	{

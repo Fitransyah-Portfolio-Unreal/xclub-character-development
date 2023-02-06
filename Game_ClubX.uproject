@@ -75,6 +75,11 @@
 		{
 			"Name": "RemoteControlProtocolDMX",
 			"Enabled": true
+		},
+		{
+			"Name": "MeshMorpher",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/ea3b423e81494f0ea74e79101fcb9e72"
 		}
 	]
 }
