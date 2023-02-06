@@ -74,9 +74,9 @@ Plugins/*/Intermediate/*
 DerivedDataCache/*
 Content/MetaHumans/
 Content/StarterContent/
-Content/Mixamo/MakerMan/
-Content/Assets/Accessories/Glass/blinn1.uasset
-Content/Assets/
+Content/Assets/Mixamo/
+Content/Assets/InfinityBladeEffects/
+Content/Assets/Audio/
 Content/Megascans/3D_Assets/Travel_Coffee_Cup_ugrkdbfva/T_TravelCoffeeCup_ugrkdbfva_2K_DpR.uasset
 Content/Megascans/
 Build Sci Fi/
