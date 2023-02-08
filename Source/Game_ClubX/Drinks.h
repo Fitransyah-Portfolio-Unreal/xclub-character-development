@@ -9,9 +9,9 @@
 UENUM(BlueprintType)
 enum class EDrinksState : uint8
 {
-	EDS_Idle UMETA(DisplayName = "Drinks"),
-	EDS_BeingHold UMETA(DisplayName = "Drinks"),
-	EDS_Empty UMETA(DisplayName = "Drinks"),
+	EDS_Idle UMETA(DisplayName = "Idle"),
+	EDS_BeingHold UMETA(DisplayName = "BeingHold"),
+	EDS_Empty UMETA(DisplayName = "Empty"),
 
 	EDS_MAX UMETA(DisplayName = "DefaultMax")
 };
@@ -24,6 +24,9 @@ class GAME_CLUBX_API ADrinks : public AItem
 public:
 
    ADrinks();
+
+   UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Drinks")
+   FString DrinkName;
 
    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Drinks")
    EDrinksState DrinksState;

@@ -80,6 +80,11 @@
 			"Name": "MeshMorpher",
 			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/ea3b423e81494f0ea74e79101fcb9e72"
+		},
+		{
+			"Name": "RLLiveLink",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/f6a79afa7d0e4d429be8b993f7b6f5ad"
 		}
 	]
 }

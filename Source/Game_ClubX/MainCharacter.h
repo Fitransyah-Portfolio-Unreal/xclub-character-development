@@ -119,7 +119,7 @@ public:
 	class ADrinks* HoldedDrink;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Drinking")
-	class AItem* ActiveOverlappingItem;
+	class ADrinks* ActiveOverlappingItem;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Drinking")
 	class UAnimMontage* DrinkingMontage;
@@ -138,13 +138,13 @@ public:
 	void DrinkingEnd();
 
 	// Setter for overlapping item
-	FORCEINLINE void SetActiveOverlappingItem(AItem* ItemToSet) { ActiveOverlappingItem = ItemToSet; }
+	FORCEINLINE void SetActiveOverlappingItem(ADrinks* ItemToSet) { ActiveOverlappingItem = ItemToSet; }
 
 	// Getter to weapon
 	FORCEINLINE ADrinks* GetEquippedWeapon() { return HoldedDrink; }
 
 	// Getter for overlapping item
-	FORCEINLINE AItem* GetActiveOverlappingItem() { return ActiveOverlappingItem; }
+	FORCEINLINE ADrinks* GetActiveOverlappingItem() { return ActiveOverlappingItem; }
 
 	//------------------ DRUNK MECHANIC
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Drunk")

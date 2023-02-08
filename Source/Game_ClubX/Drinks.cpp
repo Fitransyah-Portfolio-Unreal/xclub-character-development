@@ -19,12 +19,16 @@ ADrinks::ADrinks()
 	bRotate = false;
 
 	DrinkAmount = 3;
+
+	// for refactor
+	//CollisionVolume->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
 }
 
 void ADrinks::OnOverLapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnOverLapBegin(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 
+	return;
 	if ((DrinksState == EDrinksState::EDS_Idle) && OtherActor)
 	{
 		AMainCharacter* MainChar = Cast<AMainCharacter>(OtherActor);
@@ -39,6 +43,7 @@ void ADrinks::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* Oth
 {
 	Super::OnOverlapEnd(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 
+	return;
 	if (OtherActor)
 	{
 		AMainCharacter* MainChar = Cast<AMainCharacter>(OtherActor);
@@ -53,6 +58,7 @@ void ADrinks::Equip(class AMainCharacter* MainChar)
 {
 	if (MainChar)
 	{
+		// if MainChar bisholding glass is true return
 		Mesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 		Mesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
 		Mesh->SetSimulatePhysics(false);
@@ -67,7 +73,7 @@ void ADrinks::Equip(class AMainCharacter* MainChar)
 			MainChar->bIsHoldingGlass = true;
 
 			DrinksState = EDrinksState::EDS_BeingHold;
-			CollisionVolume->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			CollisionVolume->SetCollisionEnabled(ECollisionEnabled::NoCollision); // need to change?
 		}
 
 	}
