@@ -24,6 +24,9 @@ class GAME_CLUBX_API UClubberAnimInstance : public UAnimInstance
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "ClubberAnimInstance")
 	class AClubber* Clubber;
 
+	UPROPERTY(BlueprintReadOnly, Category = "ClubberAnimInstance")
+	EDrunknessLevel PlayerDrunkState;
+
 	virtual void NativeInitializeAnimation() override;
 
 	UFUNCTION(BlueprintCallable, Category = "ClubberAnimInstance")

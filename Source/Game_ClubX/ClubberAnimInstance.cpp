@@ -15,6 +15,8 @@ void UClubberAnimInstance::NativeInitializeAnimation()
 			Clubber = Cast<AClubber>(Pawn);
 		}
 	}
+
+	PlayerDrunkState = EDrunknessLevel::EDL_MAX;
 }
 
 void UClubberAnimInstance::UpdateAnimationProperties()
