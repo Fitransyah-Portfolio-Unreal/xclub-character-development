@@ -15,6 +15,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/PlayerCameraManager.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 AMainCharacter::AMainCharacter()
@@ -66,6 +67,14 @@ AMainCharacter::AMainCharacter()
 	HeadCamera->bUsePawnControlRotation = true;
 	HeadCamera->SetWorldLocation(FVector(0.f, 0.f, 25.f));
 	HeadCamera->SetWorldRotation(FRotator(0.f, 90.f, 90.f));
+
+	//------------------ Clubber Idle Collision
+	ClubberSphere = CreateDefaultSubobject<USphereComponent>(TEXT("ClubberSphere"));
+	ClubberSphere->SetupAttachment(GetRootComponent());
+	ClubberSphere->SetSphereRadius(125.f);
+	ClubberSphere->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel2);
+	ClubberSphere->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	ClubberSphere->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel2, ECollisionResponse::ECR_Overlap);
 }
 
 // Called when the game starts or when spawned

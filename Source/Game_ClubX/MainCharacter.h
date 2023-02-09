@@ -170,6 +170,7 @@ public:
 	EDrunknessLevel DrunkState;
 
 	void SetDrunkState(EDrunknessLevel NewState);
+	EDrunknessLevel GetDrunkState() { return DrunkState;}
 
 	//------------------ FIRST  PERSON
 
@@ -180,7 +181,11 @@ public:
 
 	void SetCameraPitchLimits(float Min, float Max);
 
-	//--------------------------
+	//------------------ Clubber Idle Collision
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Clubber")
+	class USphereComponent* ClubberSphere;
+
+	//-------------------------- Live Link
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Face Live Link")
 	bool bFaceLiveLinkEnabled;
