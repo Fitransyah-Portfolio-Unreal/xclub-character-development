@@ -27,6 +27,18 @@ class GAME_CLUBX_API UClubberAnimInstance : public UAnimInstance
 	UPROPERTY(BlueprintReadOnly, Category = "ClubberAnimInstance")
 	EDrunknessLevel PlayerDrunkState;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ClubberAnimInstance")
+	FVector TargetLocation;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ClubberAnimInstance")
+	bool bLookAtTarget;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ClubberAnimInstance")
+	bool bPlayerIsDancing;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "ClubberAnimInstance")
+	bool bKeepLooing;
+
 	virtual void NativeInitializeAnimation() override;
 
 	UFUNCTION(BlueprintCallable, Category = "ClubberAnimInstance")

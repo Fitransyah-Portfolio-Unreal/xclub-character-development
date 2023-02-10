@@ -74,7 +74,7 @@ AMainCharacter::AMainCharacter()
 	ClubberSphere->SetSphereRadius(125.f);
 	ClubberSphere->SetCollisionObjectType(ECollisionChannel::ECC_GameTraceChannel2);
 	ClubberSphere->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-	ClubberSphere->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel2, ECollisionResponse::ECR_Overlap);
+	ClubberSphere->SetCollisionResponseToChannel(ECollisionChannel::ECC_GameTraceChannel3, ECollisionResponse::ECR_Overlap);
 }
 
 // Called when the game starts or when spawned

@@ -25,6 +25,9 @@ public:
 	FORCEINLINE  AMainCharacter* GetTargetedPlayer() { return TargetedPlayer;}
 	FORCEINLINE  void SetTargetedPlayer(AMainCharacter* Target) {TargetedPlayer = Target;}
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clubber")
+	bool bPlayerIsExist;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
