@@ -8,7 +8,7 @@ public class Game_ClubX : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG", "ChaosCloth" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "UMG", "ChaosCloth", "MoviePlayer" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "Slate" , "SlateCore" });
 

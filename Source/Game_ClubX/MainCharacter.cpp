@@ -87,7 +87,7 @@ void AMainCharacter::BeginPlay()
 	bIsDancing = false;
 	bIsHoldingGlass = false;
 
-	SetCameraPitchLimits(-89.f, 89.f);
+	//SetCameraPitchLimits(-89.f, 89.f);
 
 }
 
