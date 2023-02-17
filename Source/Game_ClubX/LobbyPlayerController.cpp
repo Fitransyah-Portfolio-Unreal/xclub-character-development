@@ -21,6 +21,14 @@ void ALobbyPlayerController::BeginPlay()
 	MainMenu->SetVisibility(ESlateVisibility::Visible);
 	MainMenu->bIsEnabled = true;
 
+	if (SettingMenuWidget)
+	{
+		SettingMenu = CreateWidget<UUserWidget>(this,SettingMenuWidget);
+	}
+	SettingMenu->AddToViewport(-10);
+	SettingMenu->SetVisibility(ESlateVisibility::Hidden);
+	SettingMenu->bIsEnabled = false;
+
 	FInputModeUIOnly InputModeUIOnly;
 	SetInputMode(InputModeUIOnly);
 	bShowMouseCursor= true;
