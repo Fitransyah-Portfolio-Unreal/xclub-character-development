@@ -44,19 +44,22 @@ void ALobbyPlayerController::BeginPlay()
 		
 		if (CharStorage != nullptr)
 		{
+			ActiveDisplayedActorName = "Bob";
 			SetFirstActor();
 		}
 	}
+
+	
 }
 
 void ALobbyPlayerController::SetFirstActor()
 {
 	if (CharStorage)
 	{
-		FString  Bob = "LobbyChar1";
-		if (CharStorage->LobbyCharMap.Contains(Bob))
+		FString  FirstCharacter = ActiveDisplayedActorName;
+		if (CharStorage->LobbyCharMap.Contains(ActiveDisplayedActorName))
 		{
-			ActiveDisplayedActor = GetWorld()->SpawnActor<AActor>(CharStorage->LobbyCharMap[Bob]);
+			ActiveDisplayedActor = GetWorld()->SpawnActor<AActor>(CharStorage->LobbyCharMap[ActiveDisplayedActorName]);
 
 			if (PlacementPointActor)
 			{
@@ -81,6 +84,8 @@ void ALobbyPlayerController::SetActiveDisplayerdActor(FString NewActiveDisplayed
 			{
 				ActiveDisplayedActor->SetActorLocation(PlacementPointActor->GetActorLocation());
 				ActiveDisplayedActor->SetActorRotation(PlacementPointActor->GetActorRotation());
+
+				ActiveDisplayedActorName = NewActiveDisplayedActor;
 			}
 		}
 	}
@@ -95,6 +100,37 @@ void ALobbyPlayerController::DestroyActiveDisplayedActor()
 	else
 	{
 		return;
+	}
+}
+
+void ALobbyPlayerController::DisplaySettingMenu()
+{
+	if (SettingMenu)
+	{
+		bSettingMenuVisible = true;
+		SettingMenu->SetVisibility(ESlateVisibility::Visible);
+	}
+	
+}
+
+void ALobbyPlayerController::RemoveSettingMenu()
+{
+	if (SettingMenu)
+	{
+		bSettingMenuVisible = false;
+		SettingMenu->SetVisibility(ESlateVisibility::Hidden);
+	}
+}
+
+void ALobbyPlayerController::ToggleSettingMenu()
+{
+	if (bSettingMenuVisible)
+	{
+		RemoveSettingMenu();
+	}
+	else
+	{
+		DisplaySettingMenu();
 	}
 }
 

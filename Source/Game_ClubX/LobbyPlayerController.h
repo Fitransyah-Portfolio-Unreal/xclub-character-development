@@ -27,6 +27,17 @@ class GAME_CLUBX_API ALobbyPlayerController : public APlayerController
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = "MainWidgets")
 	UUserWidget* SettingMenu;
 
+	bool bSettingMenuVisible;
+
+	UFUNCTION(BlueprintCallable)
+	void DisplaySettingMenu();
+	
+	UFUNCTION(BlueprintCallable)
+	void RemoveSettingMenu();
+	
+
+	void ToggleSettingMenu();
+
 	// ------------------------------------------------Level
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
 	class ACharactersStorage* CharStorage;
@@ -37,6 +48,9 @@ class GAME_CLUBX_API ALobbyPlayerController : public APlayerController
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
 	AActor* ActiveDisplayedActor;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Level Properties")
+	FString ActiveDisplayedActorName;
+
 	UFUNCTION(BlueprintCallable)
 	void SetFirstActor();
 
@@ -46,9 +60,6 @@ class GAME_CLUBX_API ALobbyPlayerController : public APlayerController
 	UFUNCTION(BlueprintCallable)
 	void DestroyActiveDisplayedActor();
 
-	void ShowSettingMenu();
-	void RemovePauseMenu();
-	void ToggleSettingMenu();
 
 
 	protected:
