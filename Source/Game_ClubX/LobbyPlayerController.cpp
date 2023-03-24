@@ -7,6 +7,8 @@
 #include "CharactersStorage.h"
 #include "Kismet/GameplayStatics.h"
 #include "Containers/Array.h" 
+#include "Components/HorizontalBox.h"
+#include "Components/HorizontalBoxSlot.h"
 
 
 void ALobbyPlayerController::BeginPlay()
@@ -133,4 +135,6 @@ void ALobbyPlayerController::ToggleSettingMenu()
 		DisplaySettingMenu();
 	}
 }
+
+
 

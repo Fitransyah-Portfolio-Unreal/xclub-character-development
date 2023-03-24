@@ -38,6 +38,7 @@ class GAME_CLUBX_API ALobbyPlayerController : public APlayerController
 
 	void ToggleSettingMenu();
 
+
 	// ------------------------------------------------Level
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
 	class ACharactersStorage* CharStorage;
@@ -59,6 +60,7 @@ class GAME_CLUBX_API ALobbyPlayerController : public APlayerController
 
 	UFUNCTION(BlueprintCallable)
 	void DestroyActiveDisplayedActor();
+
 
 
 

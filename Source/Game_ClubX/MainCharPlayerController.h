@@ -22,6 +22,18 @@ class GAME_CLUBX_API AMainCharPlayerController : public APlayerController
 	UPROPERTY(Editanywhere, BlueprintReadWrite, Category = "GameplayWidgets")
 	UUserWidget* HUDOverlay;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
+	class ACharactersStorage* CharStorage;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
+	class AActor* PlacementPointActor;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Level Properties")
+	class AMainCharacter* ActiveDisplayedCharacter;
+
+	UFUNCTION(BlueprintCallable)
+	void SetCharacter(FString SelectedCharacter = "");
+
 	protected:
 	virtual void BeginPlay() override;
 };
